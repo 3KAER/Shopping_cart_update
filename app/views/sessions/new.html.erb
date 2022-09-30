@@ -1,0 +1,41 @@
+
+<!-- partial:index.partial.html -->
+<div class="container">
+  <div class="row" style="justify-content: center">
+    <div class="col-md-6 col-md-offset-3">
+  <%= form_with(url: login_path, scope: :session) do |f| %>
+  <div class="email">
+  
+    <label for="email">Email Address</label>
+    <div class="sec-2">
+      <ion-icon name="mail-outline"></ion-icon>
+      <input type="email" name="email" placeholder="Username@gmail.com"/>
+    </div>
+  </div>
+  
+  <div class="password">
+    <label for="password">Password</label>
+    <div class="sec-2">
+      <ion-icon name="lock-closed-outline"></ion-icon>
+      <input class="pas" type="password" name="password" placeholder="············"/>
+      <ion-icon class="show-hide" name="eye-outline"></ion-icon>
+    </div>
+  </div>
+  <%= f.label :remember_me, class: "checkbox inline" do %>
+<%= f.check_box :remember_me %>
+<span>Remember me on this computer</span>
+<% end %>
+ 
+  
+  
+  <%= f.submit "Login" %>
+  <% end %>
+
+
+</div>
+</div>
+</div>
+
+  
+
+

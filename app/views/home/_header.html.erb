@@ -1,0 +1,70 @@
+<header class="header_section">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <a class="navbar-brand" href="/">
+          <span>
+           DTElec
+          </span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=""></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav  ">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a >
+                <%= link_to "SHOP",home_shop_path, class:"nav-link" %>
+              </a>
+            </li>
+            <li class="nav-item">
+               <a >
+                <%= link_to "Why us",home_about_path, class:"nav-link" %>
+              </a>
+            </li>
+            <li class="nav-item">
+            <a >
+                <%= link_to "Testimonial",home_testimal_path, class:"nav-link" %>
+              </a>
+             
+            </li>
+           <li class="nav-item">
+            <a >
+                <%= link_to "Contact us",home_contact_path, class:"nav-link" %>
+              </a>
+             
+            </li>
+          </ul>
+         
+          <div class="user_option">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <% if logged_in? %>
+             
+              <span>
+                
+               
+                      <%= link_to "Users", current_user, class: "dropdown-item dropdown-padding"  %>
+                      
+                    <%= button_to 'Log out', logout_path, method: :delete, class: "dropdown-item dropdown-padding" %>
+              </span>
+            <% else %>
+             <span>
+                
+                <%= link_to "Sign up",home_signup_path,class: "dropdown-item dropdown-padding" %>
+            </span>
+              
+          <% end %>
+              
+
+              <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+              <span>
+                <%= link_to "Cart",cards_show_path,class: "dropdown-item dropdown-padding" %>
+              </span>
+             
+           
+          </div>
+        </div>
+      </nav>
+    </header>

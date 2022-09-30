@@ -1,0 +1,29 @@
+
+<div class="container">
+  <div class="row">
+     <a><%= link_to"#{current_order.order_items.size} items add a value of#{current_order.subtotal}$",cards_path%></a>
+    <% @products.each do |product| %>
+      <div class="col-lg-2 col-md-6 mb-4">
+           <%= link_to product, class: "card" do %>
+          <%= image_tag(product.image, class: "card-img-top") if product.image.attached? %>
+          <div class="card-body">
+            <p class="card-text"><%= product.title %></p>
+          </div>
+          <div class="card-footer text-muted">
+            <p class="card-text">Price: <%= product.price %></p>
+          </div>
+          <td>
+
+        
+          
+        </td>
+        <% end %>
+        <%= form_for @order_item, remote: true  do |f|%>
+          <%= f.hidden_field :product_id, :value => product.id %>
+          <%= f.number_field :quantity, :value => 1, :min =>  1%>
+          <%= f.submit "Add to Card "%>
+          <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
