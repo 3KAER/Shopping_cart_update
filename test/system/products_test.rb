@@ -28,7 +28,7 @@ class ProductsTest < ApplicationSystemTestCase
 
     fill_in "Price", with: @product.price
     fill_in "Title", with: @product.title
-    click_on "Update Product"
+    click_on ""
 
     assert_text "Product was successfully updated"
     click_on "Back"

@@ -30,4 +30,5 @@ delete "delete", to: "order_items#destroy"
  resource :cards, only:[:show]
  get "stores/new"
 
+
 end

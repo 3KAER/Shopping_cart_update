@@ -13,11 +13,7 @@ def header
 end
     def contact
     end
-      def shop
-        @products = Product.all
-
-        @order_item = current_order.order_items.new
-      end
+     
       def login
       end
       def signup

@@ -4,13 +4,18 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+    @order_item = current_order.order_items.new
     @products = Product.all
+    @q = Product.ransack(params[:q])
+    @products = @q.result
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
     @product = Product.find_by(id: params[:id])
+    @order_item = current_order.order_items.new
+    
   end
 
   # GET /products/new
@@ -19,8 +24,18 @@ class ProductsController < ApplicationController
     
   end
 
-  # GET /products/1/edit
   def edit
+    @product = Product.find_by(id: params[:id])
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+      redirect_to @product
+    else
+      redirect_to root_path
+    end
+ 
   end
 
   # POST /products
@@ -41,13 +56,13 @@ class ProductsController < ApplicationController
 
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
-  def update
-   
-  end
-
+  
   # DELETE /products/1
   # DELETE /products/1.json
+  
+
   def destroy
+
   
   end
 
@@ -59,6 +74,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:title, :price, :image,:store_id)
+      params.require(:product).permit(:title, :price, :image,:store_id,:describe)
     end
 end

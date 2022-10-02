@@ -1,31 +1,56 @@
-
-<p id="notice"><%= notice %></p>
-
-<h1>Products</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<section class="shop_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Latest Products
+        </h2>
+      </div>
+    <%= search_form_for @q, remote: true do |f|  %>
+     <%= f.search_field :title_cont, class: 'form-control', placeholder: "Name of products" %>
+     <%= f.submit %>
+    <%end%>
+      <div class="row">
+      <% @products.each do |product| %>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="box">
+              <a href="">
+              <div class="img-box">
+              <%= image_tag(product.image, class: "card-img-top") if product.image.attached? %>
+              </div>
+              <div class="detail-box">
+                <h6>
+                  <%= product.title %>
+                </h6>
+                <h6>
+                  Price
+                  <span>
+                    <%= product.price %>
+                  </span>
+                </h6>
+              </div>
+              <div class="new">
+                <span>
+                 <td><%= link_to 'More', product %></td>
+                </span>
+              </div>
+            </a>
+             <%= form_for @order_item, remote: true  do |f|%>
+          <%= f.hidden_field :product_id, :value => product.id %>
+          <%= f.number_field :quantity, :value => 1, :min =>  1%>
+          <%= f.submit "Add to Card "%>
+          <% end %>
+            
+          </div>
+          
+        </div>
+         
+        <% end %>
+      </div>
       
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.title %></td>
-        <td><%= product.price %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Product', new_product_path %>
+      <div class="btn-box">
+        <a href="">
+          View All Products
+        </a>
+      </div>
+    </div>
+  </section>
